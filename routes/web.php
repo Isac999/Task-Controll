@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Mail\MensagemTesteMail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('tarefa', 'App\Http\Controllers\TarefaController');
+
+Route::get('/mensagem', function() {
+    //return new MensagemTesteMail;  
+    Mail::to('email@email.com')->send(new MensagemTesteMail());
+    return 'Mensagem enviada';
+});
