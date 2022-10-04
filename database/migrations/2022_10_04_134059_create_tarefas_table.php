@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('tarefas', function (Blueprint $table) {
             $table->id();
+            $table->string('tarefa', 200);
+            $table->date('data_limite_conclusao');
             $table->timestamps();
         });
     }

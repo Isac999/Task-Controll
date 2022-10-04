@@ -12,12 +12,12 @@
                         @csrf
                         <div class="form-group">
                           <label for="exampleInputEmail1">Tarefa</label>
-                          <input type="text" class="form-control" placeholder="Digite a tarefa aqui">
+                          <input type="text" class="form-control" placeholder="Digite a tarefa aqui" name="tarefa">
                         </div>
                         <br>
                         <div class="form-group">
                           <label for="exampleInputPassword1">Data limite</label>
-                          <input type="date" class="form-control">
+                          <input type="date" class="form-control" name="data_limite_conclusao">
                         </div>
                         <br>
                         <button type="submit" class="btn btn-primary">Submit</button>
