@@ -21,11 +21,15 @@
                                     <th scope="row">{{ $t['id'] }}</th>
                                     <td>{{ $t['tarefa'] }}</td>
                                     <td>{{ date('d/m/Y', strtotime($t['data_limite_conclusao'])) }}</td>
+                                    <td><a href="{{ route('tarefa.edit', $t['id']) }}">Edit</a></td>
+                                    <!--
+                                    'id' => $t['id'], 'tarefa'=> $t['tarefa'], 'data_limite_conclusao' => $t['data_limite_conclusao']
+                                    -->
                                 </tr>
                             @endforeach
                         </tbody>
                       </table>
-                      
+
                       <br>
 
                       <div style="margin-left: 35%">
