@@ -30,7 +30,7 @@ class TarefaController extends Controller
             return 'Precisa efetuar login!';
         }*/
         $user_id = auth()->user()->id;
-        $tarefas = Tarefa::where('user_id', $user_id)->paginate(1);
+        $tarefas = Tarefa::where('user_id', $user_id)->paginate(8);
 
         return view('tarefas.index', ['tarefas' => $tarefas]);
     }
@@ -101,8 +101,14 @@ class TarefaController extends Controller
      */
     public function update(Request $request, Tarefa $tarefa)
     {
-        $tarefa->update($request->all());
-        return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
+        $user_id = auth()->user()->id;
+
+        if ($tarefa->user_id == $user_id) {    
+            $tarefa->update($request->all());
+            return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);            
+        }
+
+        return view('acesso_negado');
     }
 
     /**
@@ -113,6 +119,13 @@ class TarefaController extends Controller
      */
     public function destroy(Tarefa $tarefa)
     {
-        //
+        $user_id = auth()->user()->id;
+
+        if ($tarefa->user_id == $user_id) {    
+            $tarefa->delete();
+            return redirect()->route('tarefa.index');
+        }
+        
+        return view('acesso_negado');
     }
 }

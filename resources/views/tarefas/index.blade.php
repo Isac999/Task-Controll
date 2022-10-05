@@ -22,6 +22,13 @@
                                     <td>{{ $t['tarefa'] }}</td>
                                     <td>{{ date('d/m/Y', strtotime($t['data_limite_conclusao'])) }}</td>
                                     <td><a href="{{ route('tarefa.edit', $t['id']) }}">Edit</a></td>
+                                    <td>
+                                        <form id="form_{{$t['id']}}" method="POST" action="{{ route('tarefa.destroy', ['tarefa' => $t['id']]) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                        </form>
+                                        <a href="#" onclick="document.getElementById('form_{{$t['id']}}').submit()">Deletar</a>
+                                    </td>
                                     <!--
                                     'id' => $t['id'], 'tarefa'=> $t['tarefa'], 'data_limite_conclusao' => $t['data_limite_conclusao']
                                     -->
