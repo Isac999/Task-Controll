@@ -30,7 +30,7 @@ class TarefaController extends Controller
             return 'Precisa efetuar login!';
         }*/
         $user_id = auth()->user()->id;
-        $tarefas = Tarefa::where('user_id', $user_id)->get();
+        $tarefas = Tarefa::where('user_id', $user_id)->paginate(1);
 
         return view('tarefas.index', ['tarefas' => $tarefas]);
     }
@@ -59,7 +59,7 @@ class TarefaController extends Controller
         $task = Tarefa::create($dados);
         //$destinatario = auth()->user()->email();
         //Mail::to($destinatario)->send(new NovaTarefaMail($task));
-        
+
         return redirect()->route('tarefa.show', ['tarefa' => $task->id]);
     }
 

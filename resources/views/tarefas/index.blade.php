@@ -20,11 +20,17 @@
                                 <tr>
                                     <th scope="row">{{ $t['id'] }}</th>
                                     <td>{{ $t['tarefa'] }}</td>
-                                    <td>{{ $t['data_limite_conclusao'] }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($t['data_limite_conclusao'])) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                       </table>
+                      
+                      <br>
+
+                      <div style="margin-left: 35%">
+                        {{ $tarefas->links("pagination::bootstrap-4") }}
+                      </div>
                 </div>
             </div>
         </div>
